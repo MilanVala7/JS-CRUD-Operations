@@ -35,6 +35,14 @@ function getProducts() {
     return products;
 }
 
+function escapeHtmlAttribute(value){
+    return String(value ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/"/g, "&quot;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+}
+
 let products = getProducts();
 console.log(products);
 
@@ -160,11 +168,11 @@ function editProduct(productId) {
                 <h5 class="mb-3 fw-semibold">Update Product</h5>
                 <div class="row">
                     <div class="col-12 col-sm-4 form-group mb-2">
-                        <input type="text" id="product-name" class="form-control" placeholder="Product Name" value=${p.productName}>
+                        <input type="text" id="product-name" class="form-control" placeholder="Product Name" value="${escapeHtmlAttribute(p.productName)}">
                         <p id="validate-product-name"></p>
                     </div>
                     <div class="col-12 col-sm-4 form-group mb-2">
-                        <input type="number" id="product-price" class="form-control" placeholder="Product Price" value=${p.price}>
+                        <input type="number" id="product-price" class="form-control" placeholder="Product Price" value="${escapeHtmlAttribute(p.price)}">
                         <p id="validate-product-price"></p>
                     </div>
                     <div class="col-12 col-sm-4 form-group mb-2">
