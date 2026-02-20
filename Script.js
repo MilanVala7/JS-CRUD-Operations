@@ -145,7 +145,6 @@ function addProduct() {
     showToast("Product added successfully", "success");
 }
 
-
 renderProducts(products);
 
 function editProduct(productId) {
