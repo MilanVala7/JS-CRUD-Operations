@@ -160,7 +160,7 @@ function editProduct(productId) {
                 <h5 class="mb-3 fw-semibold">Update Product</h5>
                 <div class="row">
                     <div class="col-12 col-sm-4 form-group mb-2">
-                        <input type="text" id="product-name" class="form-control" placeholder="Product Name" value=${p.productName}>
+                        <input type="text" id="product-name" class="form-control" placeholder="Product Name" value=${escapeHtmlAttribute(p.productName)}>
                         <p id="validate-product-name"></p>
                     </div>
                     <div class="col-12 col-sm-4 form-group mb-2">
