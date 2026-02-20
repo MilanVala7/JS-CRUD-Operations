@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>View Product</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .product-img {
+            max-height: 350px;
+            object-fit: contain;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container my-5">
+        <div class="row justify-content-center">
+
+            <div class="col-md-8">
+                <div class="card shadow-lg border-0">
+                    <div class="row g-0">
+
+                        <div class="col-md-6 text-center p-3">
+                            <img id="image" class="img-fluid product-img" alt="Product Image">
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="card-body">
+
+                                <h3 class="card-title text-primary" id="name"></h3>
+
+                                <h5 class="text-success mb-3">
+                                    ₹ <span id="price"></span>
+                                </h5>
+
+                                <p class="text-muted" id="description"></p>
+
+                                <hr>
+
+                                <div class="d-flex gap-2 mt-3">
+                                    <button class="btn btn-secondary" onclick="goBack()">Close</button>
+                                </div>
+
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+
+        function getProducts() {
+            let products = [];
+
+            try {
+                const stored = localStorage.getItem("products");
+                products = stored ? JSON.parse(stored) : [];
+            } catch (e) {
+                products = [];
+            }
+
+            return products;
+        }
+
+        function productDetails() {
+
+            const productId = JSON.parse(localStorage.getItem("view-product"));
+            if (!productId) return;
+
+            let products = getProducts();
+            const product = products.find(p => p.productId == productId);
+            if (!product) return;
+
+            document.getElementById("image").src = product.image;
+            document.getElementById("name").innerHTML = product.productName;
+            document.getElementById("price").innerHTML = product.price;
+            document.getElementById("description").innerHTML = product.description;
+
+        }
+
+        productDetails();
+
+        function goBack() {
+            window.close();
+        }
+    </script>
+</body>
+
+</html>

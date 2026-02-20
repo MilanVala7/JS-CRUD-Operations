@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <title>Product Management system</title>
+
+    <style>
+        nav {
+            background-color: aliceblue;
+        }
+
+        .toast-message {
+            position: fixed;
+            top: 30px;
+            left: 30px;
+            min-width: 250px;
+            padding: 14px 20px;
+            color: #fff;
+            border-radius: 6px;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+            font-size: 15px;
+            opacity: 0;
+            z-index: 9999;
+        }
+
+        .toast-message.show {
+            opacity: 1;
+            pointer-events: auto;
+            transform: translateY(0);
+        }
+
+        .toast-success {
+            background-color: #198754;
+        }
+
+        .toast-danger {
+            background-color: #dc3545;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2) !important;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="toast" class="toast-message"></div>
+    <nav class="container-fluid">
+        <div class="row align-items-center p-3 shadow-sm ">
+            <div class="col-md-4 form-group">
+                <label class="form-label">Filter & Search:</label>
+                <input type="text" class="form-control" id="searchInput" />
+            </div>
+
+            <div class="col-md-3 ms-md-auto form-group">
+                <label class="form-label mb-1">Sort By:</label>
+                <select class="form-select" id="sortSelect">
+                    <option value="">Select sorting option</option>
+                    <option value="product_id">Product id</option>
+                    <option value="product_name">Product Name</option>
+                    <option value="price_asc">Price (Low -> High)</option>
+                    <option value="price_desc">Price (High -> Low)</option>
+                </select>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container-fluid my-4">
+        <form class="update-product">
+            <div class="row g-3 bg-light ms-md-auto">
+
+                <div class="col-md-4 form-group">
+                    <label class="form-label">Product Name</label>
+                    <input type="text" class="form-control" id="name">
+                    <div class="invalid-feedback" id="validate_product_name"></div>
+                </div>
+
+                <div class="col-md-3 form-group">
+                    <label class="form-label">Price</label>
+                    <input type="number" class="form-control" id="price">
+                    <div class="invalid-feedback" id="validate_product_price"></div>
+                </div>
+
+
+                <div class="col-md-4 form-group">
+                    <label class="form-label">Product Image:</label>
+                    <input class="form-control" type="file" id="img" />
+                    <div class="invalid-feedback" id="validate_product_image"></div>
+                </div>
+            </div>
+
+            <div class="row g-3 bg-light p-2">
+                <div class="col-md-8 form-group">
+                    <label class="form-label">Description</label>
+                    <textarea class="form-control" rows="2" id="description"></textarea>
+                    <div class="invalid-feedback" id="validate_product_desc"></div>
+                </div>
+                <div class="col-md-4 align-self-center text-center form-group">
+                    <button class="btn btn-lg btn-primary" type="button" id="add-prod-btn" onclick="addProduct()">Add
+                        Product</button>
+                </div>
+            </div>
+        </form>
+
+        <div class="row g-4 m-3" id="product-list"></div>
+    </main>
+    <script src="Script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous">
+        </script>
+</body>
+
+</html>
